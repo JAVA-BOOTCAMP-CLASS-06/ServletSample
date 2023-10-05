@@ -1,15 +1,14 @@
 package servlets;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.Serial;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet (description = "Muestra una tabla HTML", urlPatterns = "/table")
 public class HttpTableSample extends HttpServlet {
@@ -17,12 +16,13 @@ public class HttpTableSample extends HttpServlet {
 	/**
 	 * 
 	 */
+	@Serial
 	private static final long serialVersionUID = 2319314504958811913L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			   throws ServletException, IOException {
+			   throws IOException {
 		
-		List<String[]> data = new ArrayList<String[]>();
+		List<String[]> data = new ArrayList<>();
 		
 		data.add(new String [] {"Juan Perez", "25456785", "juan.perez@gmail.com"});
 		data.add(new String [] {"Roberto Lopez", "26789545", "roberto.lopez@gmail.com"});

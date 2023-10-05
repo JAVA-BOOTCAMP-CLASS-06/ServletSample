@@ -1,21 +1,13 @@
 package servlets;
 
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.*;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.Serial;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Optional;
-
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 @WebServlet (description = "Verifica la existencia de la session", urlPatterns = "/session")
 public class SessionCookies extends HttpServlet {
@@ -23,10 +15,12 @@ public class SessionCookies extends HttpServlet {
 	/**
 	 * 
 	 */
+	@Serial
 	private static final long serialVersionUID = 2319314504958811913L;
+
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			   throws ServletException, IOException {
+			   throws IOException {
 
 		HttpSession session = request.getSession();
 
@@ -35,7 +29,7 @@ public class SessionCookies extends HttpServlet {
 					System.out.println("VALUE [" + v + "]");
 
 					List<String> values = Optional.ofNullable(session.getAttribute("valores"))
-												.map(ArrayList.class::cast)
+												.map(List.class::cast)
 												.orElse(new ArrayList<String>());
 					values.add(v);
 
@@ -65,7 +59,7 @@ public class SessionCookies extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			   throws ServletException, IOException {
+			   throws IOException {
 		
 		doGet(request, response);
 	}
